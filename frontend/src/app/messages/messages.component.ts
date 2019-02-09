@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MessagesService } from './services';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-messages',
@@ -8,11 +9,12 @@ import { MessagesService } from './services';
 export class MessagesComponent implements OnInit{
 
   messages;
-  constructor(private messagesService: MessagesService){}
+  constructor(private messagesService: MessagesService, private route: ActivatedRoute){}
   
   ngOnInit(){
       this.messagesService.getMessages().subscribe(data => {
         this.messages = data;
       });
+      console.log(this.route.snapshot.params.name);
   }
 }
