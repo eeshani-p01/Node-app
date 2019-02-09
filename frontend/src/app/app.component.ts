@@ -11,7 +11,6 @@ export class AppComponent {
   @ViewChild(MessagesComponent) messagesComponent: MessagesComponent;
 
   onPosted(message){
-    console.log(message);
     this.messagesComponent.messages.push(message);
   }
 }
