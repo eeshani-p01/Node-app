@@ -10,12 +10,14 @@ import { AngularMaterialModule } from './shared';
 import { AppComponent } from './app.component';
 import { MessagesComponent, NewMessagesComponent } from './messages';
 import { MessagesService } from './messages';
+import { NavBarComponent } from './nav-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     MessagesComponent,
     NewMessagesComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
