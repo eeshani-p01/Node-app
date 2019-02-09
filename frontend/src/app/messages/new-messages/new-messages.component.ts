@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MessagesService } from '../services';
 
 @Component({
@@ -6,6 +6,8 @@ import { MessagesService } from '../services';
   templateUrl: './new-messages.component.html',
 })
 export class NewMessagesComponent implements OnInit{
+
+  @Output() onPosted = new EventEmitter();
 
   constructor(private messagesService: MessagesService){}
   
@@ -19,5 +21,6 @@ export class NewMessagesComponent implements OnInit{
 
   post(){
     this.messagesService.postMessages(this.message).subscribe();
+    this.onPosted.emit(this.message);
   }
 }
