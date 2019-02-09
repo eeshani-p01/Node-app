@@ -20,14 +20,16 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/api/messages', (req, res) => {
+var api = express.Router();     //it will create new express router
+//we are attaching these routes to new router api
+api.get('/messages', (req, res) => {
     res.json(messages);      //send response
 });
 
-app.post('/api/messages', (req, res) => {
-    console.log(req.body)      //save data
+api.post('/messages', (req, res) => {
+    messages.push(req.body)      //save data
     res.sendStatus(200);
 });
-
+app.use('/api', api);   //will tell app to use new api route
 
 app.listen(1234);
