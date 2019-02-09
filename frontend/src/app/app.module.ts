@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { MessagesComponent, NewMessagesComponent } from './messages';
 import { MessagesService } from './messages';
 import { NavBarComponent } from './nav-bar';
+import { HomeComponent } from './home';
 
 @NgModule({
   declarations: [
     AppComponent,
     MessagesComponent,
     NewMessagesComponent,
-    NavBarComponent
+    NavBarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
