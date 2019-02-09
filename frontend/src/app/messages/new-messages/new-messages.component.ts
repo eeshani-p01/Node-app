@@ -18,6 +18,6 @@ export class NewMessagesComponent implements OnInit{
   }
 
   post(){
-    console.log(this.message);
+    this.messagesService.postMessages(this.message).subscribe();
   }
 }
