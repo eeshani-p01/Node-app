@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { MessagesComponent } from './messages';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,4 @@ import { MessagesComponent } from './messages';
 })
 export class AppComponent {
 
-  @ViewChild(MessagesComponent) messagesComponent: MessagesComponent;
-
-  onPosted(message){
-    this.messagesComponent.messages.push(message);
-  }
 }

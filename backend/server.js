@@ -26,6 +26,12 @@ api.get('/messages', (req, res) => {
     res.json(messages);      //send response
 });
 
+api.post('/messages/:user', (req, res) => {
+    var user = req.params.user;
+    var result = messages.filter(message => message.owner === user);
+    res.json(result);
+});
+
 api.post('/messages', (req, res) => {
     messages.push(req.body)      //save data
     res.sendStatus(200);

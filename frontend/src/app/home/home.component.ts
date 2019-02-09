@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MessagesComponent } from '../messages';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent{
+  @ViewChild(MessagesComponent) messagesComponent: MessagesComponent;
 
-  constructor(){}
-  
-  ngOnInit(){
-     
+  onPosted(message){
+    this.messagesComponent.messages.push(message);
   }
+
 }
