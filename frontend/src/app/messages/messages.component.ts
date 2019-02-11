@@ -12,9 +12,15 @@ export class MessagesComponent implements OnInit{
   constructor(private messagesService: MessagesService, private route: ActivatedRoute){}
   
   ngOnInit(){
-      this.messagesService.getMessages().subscribe(data => {
-        this.messages = data;
-      });
-      console.log(this.route.snapshot.params.name);
+      var param = this.route.snapshot.params;
+      if(param && (Object.keys(param).length === 0)){
+        this.messagesService.getMessages().subscribe(data => {
+          this.messages = data;
+        });
+      }else{
+        this.messagesService.getMessages(param.name).subscribe(data => {
+          this.messages = data;
+        });
+      }
   }
 }

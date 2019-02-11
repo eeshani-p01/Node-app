@@ -14,8 +14,9 @@ export class MessagesService{
         
     }
 
-    getMessages(): Observable<any>{
-        return this.httpClient.get(`${this.BASE_URL}/messages`)
+    getMessages(user? : string): Observable<any>{
+        user = (user) ? user :' ';
+        return this.httpClient.get(`${this.BASE_URL}/messages/${user}`)
         .pipe(catchError((err) => this.handleError(err, "Unable to get messages")));
     }
 
