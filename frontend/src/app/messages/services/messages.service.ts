@@ -26,7 +26,6 @@ export class MessagesService{
     }
 
     private handleError = (error: any, errorMessage: string) => {
-        console.error(errorMessage)
         this.toastr.open(errorMessage, 'Close', { duration: 3000 });
         return throwError(error.error);
     }

@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AngularMaterialModule } from './shared';
+import { AngularMaterialModule, AuthService } from './shared';
 
 import { AppComponent } from './app.component';
 import { MessagesComponent, NewMessagesComponent } from './messages';
@@ -34,7 +34,8 @@ import { RegisterComponent } from './register';
     ReactiveFormsModule
   ],
   providers: [
-    MessagesService
+    MessagesService,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })

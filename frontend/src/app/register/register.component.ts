@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { AuthService } from '../shared';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +8,8 @@ import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 })
 export class RegisterComponent {
     form;
-    constructor(private formBuilder: FormBuilder){
+    constructor(private formBuilder: FormBuilder,
+        private authService: AuthService){
         this.form = formBuilder.group({
             firstName: ['', Validators.required],
             lastName:  ['', Validators.required],
@@ -18,7 +20,7 @@ export class RegisterComponent {
     }
 
     onSubmit(){
-        console.log(this.form.errors)
+        this.authService.register(this.form.value);
     }
 
     passwordMatcher(c: AbstractControl): { invalid: boolean } {
