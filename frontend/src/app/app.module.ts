@@ -14,6 +14,7 @@ import { MessagesService } from './messages';
 import { NavBarComponent } from './nav-bar';
 import { HomeComponent } from './home';
 import { RegisterComponent } from './register';
+import { LoginComponent } from './login';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegisterComponent } from './register';
     NewMessagesComponent,
     NavBarComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

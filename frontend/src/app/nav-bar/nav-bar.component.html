@@ -2,6 +2,7 @@
     <button mat-button routerLink="">Message App</button>
     <button mat-button routerLink="messages">Messages</button>
     <span class="fill-space"></span>
+    <button *ngIf="!authService.isAuthenticated"  mat-button routerLink="login">Login</button>
     <button *ngIf="!authService.isAuthenticated"  mat-button routerLink="register">Register</button>
     <button *ngIf="authService.isAuthenticated" mat-button routerLink="/">Welcome {{authService.name}}</button>
     <button *ngIf="authService.isAuthenticated" mat-button (click)="authService.logout()">Logout</button>
