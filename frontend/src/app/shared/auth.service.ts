@@ -21,21 +21,26 @@ export class AuthService{
     }
 
     login(loginData){
-        this.httpClient.post(`${this.BASE_URL}/login`, loginData).subscribe();
+        this.httpClient.post(`${this.BASE_URL}/login`, loginData).subscribe((res: any) =>{
+           this.authenticate(res);
+        });
     }
 
     register(user){
         delete user.confirmPassword;
         this.httpClient.post(`${this.BASE_URL}/register`, user).subscribe((res: any) => {
-            if(!res.token)
-                return;
-            
-            localStorage.setItem(this.TOKEN_KEY, res.token.toString());
-            localStorage.setItem(this.NAME_KEY, res.firstName.toString());
-            this.router.navigate(['/']);
+           this.authenticate(res);
         });
     }
 
+    authenticate(res){
+        if(!res.token)
+            return;
+        localStorage.setItem(this.TOKEN_KEY, res.token.toString());
+        localStorage.setItem(this.NAME_KEY, res.firstName.toString());
+        this.router.navigate(['/']);
+    }
+    
     logout(){
         localStorage.removeItem(this.NAME_KEY);
         localStorage.removeItem(this.TOKEN_KEY);

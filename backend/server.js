@@ -41,14 +41,31 @@ api.post('/messages', (req, res) => {
     res.sendStatus(200);
 });
 
+auth.post('/login', (req, res)=>{
+    var user = users.find(user=> user.email == req.body.email);
+    if(!user) 
+       sendAuthError(res);
+    if(user.password == req.body.password) 
+        sendToken(user, res);
+    else
+       sendAuthError(res);
+});
+
 auth.post('/register', (req, res)=>{
     var index = users.push(req.body) - 1;
     var user = users[index];
     user.id = index;
-    var token = jwt.sign(user.id, '123');
-
-    res.json({firstName:user.firstName ,token});
+   sendToken(user, res);
 });
+
+function sendToken(user, res){
+    var token = jwt.sign(user.id, '123');
+    res.json({firstName:user.firstName ,token});
+}
+
+function sendAuthError(res){
+    return res.json({ success: false, message: 'Email or password incorrect' })
+}
 
 app.use('/api', api);   //will tell app to use new api route
 app.use('/auth', auth); 
