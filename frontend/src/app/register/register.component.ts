@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,10 +14,16 @@ export class RegisterComponent {
             email:  ['', Validators.required],
             password:  ['', Validators.required],
             confirmPassword:  ['', Validators.required],
-        })
+        }, { validator: this.passwordMatcher})
     }
 
     onSubmit(){
-        console.log(this.form.value)
+        console.log(this.form.errors)
+    }
+
+    passwordMatcher(c: AbstractControl): { invalid: boolean } {
+        if (c.get('password').value !== c.get('confirmPassword').value) {
+            return {invalid: true};
+        }
     }
 }
