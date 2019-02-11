@@ -1,5 +1,8 @@
 <mat-toolbar color="primary">
     <button mat-button routerLink="">Message App</button>
     <button mat-button routerLink="messages">Messages</button>
-    <button mat-button routerLink="register">Register</button>
+    <span class="fill-space"></span>
+    <button *ngIf="!authService.isAuthenticated"  mat-button routerLink="register">Register</button>
+    <button *ngIf="authService.isAuthenticated" mat-button routerLink="/">Welcome {{authService.name}}</button>
+    <button *ngIf="authService.isAuthenticated" mat-button (click)="authService.logout()">Logout</button>
 </mat-toolbar>

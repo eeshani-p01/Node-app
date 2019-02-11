@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
 
 var messages =  [
     {
@@ -12,6 +13,7 @@ var messages =  [
       owner: 'Mr, Json'
     }
 ];
+var users = [];
 
 app.use(bodyParser.json());     //will describe what receieve in the body should be json
 app.use((req, res, next) => {
@@ -21,6 +23,8 @@ app.use((req, res, next) => {
 });
 
 var api = express.Router();     //it will create new express router
+var auth = express.Router();    //creating auth route
+
 //we are attaching these routes to new router api
 api.get('/messages', (req, res) => {
     res.json(messages);      //send response
@@ -36,6 +40,17 @@ api.post('/messages', (req, res) => {
     messages.push(req.body)      //save data
     res.sendStatus(200);
 });
+
+auth.post('/register', (req, res)=>{
+    var index = users.push(req.body) - 1;
+    var user = users[index];
+    user.id = index;
+    var token = jwt.sign(user.id, '123');
+
+    res.json({firstName:user.firstName ,token});
+});
+
 app.use('/api', api);   //will tell app to use new api route
+app.use('/auth', auth); 
 
 app.listen(1234);
