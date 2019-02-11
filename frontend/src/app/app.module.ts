@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AngularMaterialModule } from './shared';
@@ -12,6 +13,7 @@ import { MessagesComponent, NewMessagesComponent } from './messages';
 import { MessagesService } from './messages';
 import { NavBarComponent } from './nav-bar';
 import { HomeComponent } from './home';
+import { RegisterComponent } from './register';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { HomeComponent } from './home';
     MessagesComponent,
     NewMessagesComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { HomeComponent } from './home';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
   ],
   providers: [
     MessagesService
